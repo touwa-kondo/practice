@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>重要確認ボタン</title>
+  <style>
+    body {
+      margin: 0;
+      display: grid;
+      place-items: center;
+      height: 100vh;
+      background-color: #fff5f5;
+      font-family: system-ui, sans-serif;
+    }
+
+    .scam-btn {
+      padding: 16px 32px;
+      font-size: 20px;
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scam-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+    }
+
+    .scam-btn:hover::before {
+      animation: shimmer 1s ease forwards;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .scam-btn.clicked {
+      animation: shake 0.4s ease;
+      background-color: #b71c1c;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <button class="scam-btn" id="scamBtn">必ずクリックしてください</button>
+
+  <script>
+    const btn = document.getElementById("scamBtn");
+    btn.addEventListener("click", () => {
+      btn.classList.add("clicked");
+      btn.textContent = "20万円を振り込んでください";
+    });
+  </script>
+</body>
+</html>

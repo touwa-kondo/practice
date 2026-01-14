@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>センサーダッシュボード</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .header, .footer {
+      display: block;
+      text-align: center;
+      padding: 1em;
+      background-color: #333;
+      color: white;
+    }
+
+    .main {
+      display: block;
+      text-align: center;
+      padding: 2em;
+    }
+
+    .sensor-card {
+      display: inline-block;
+      width: 220px;
+      margin: 1em;
+      padding: 1em;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .sensor-card h2 {
+      margin-top: 0;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .sensor-card p {
+      font-size: 1.5em;
+      margin: 0.5em 0;
+      color: #0077cc;
+    }
+
+    .sensor-card small {
+      color: #666;
+    }
+
+    .alert {
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      color: #d9534f;
+    }
+
+    .light-label {
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      color: #5cb85c;
+    }
+
+    .timestamp {
+      margin-top: 1em;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">センサーダッシュボード</header>
+
+  <main class="main">
+    <div class="sensor-card">
+      <h2>温度センサー</h2>
+      <p>31.2 ℃</p>
+      <small>センサーID: 1002</small>
+      <div class="alert">⚠ 熱中症注意</div>
+    </div>
+    <div class="sensor-card">
+      <h2>湿度センサー</h2>
+      <p>38 %</p>
+      <small>センサーID: 1002</small>
+      <div class="alert">⚠ 乾燥注意</div>
+    </div>
+    <div class="sensor-card">
+      <h2>照度センサー</h2>
+      <p>120 lx</p>
+      <small>センサーID: 1002</small>
+      <div class="light-label">🌥 やや暗い</div>
+    </div>
+
+    <div class="timestamp" id="timestamp">現在時刻: --:--:--</div>
+  </main>
+
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('timestamp').textContent = '現在時刻: ' + timeString;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000); // 1秒ごとに更新
+  </script>
+</body>
+</html>
